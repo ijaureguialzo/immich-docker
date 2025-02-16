@@ -1,0 +1,13 @@
+services:
+  immich-server:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich.rule=Host(`${FQDN_IMMICH:-immich.test}`)"
+      - "traefik.http.routers.immich.entrypoints=websecure"
+      - "traefik.http.routers.immich.tls=true"
+      - "traefik.http.services.immich.loadbalancer.server.port=2283"
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-traefik-network}
+    external: true

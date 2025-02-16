@@ -12,6 +12,7 @@ help: _header
 	@echo Opciones:
 	@echo ---------------------------------
 	@echo start / stop / restart
+	@echo start-traefik
 	@echo ---------------------------------
 	@echo stats / logs / workspace
 	@echo clean
@@ -32,6 +33,9 @@ _start-command:
 	@docker compose up -d --remove-orphans
 
 start: _header _start-command _urls
+
+start-traefik:
+	@docker compose -f docker-compose.yml -f docker-compose.traefik.yml up -d --remove-orphans
 
 stop:
 	@docker compose stop
